@@ -28,6 +28,15 @@ public class ErrorController extends ResponseEntityExceptionHandler {
                 )
                 .collect(Collectors.toList());
         ApiError apiError = new ApiError(DEFAULT_VALIDATION_FAILED_MESSAGE, errors);
+
+        boolean hasError = errors.stream()
+                .anyMatch(e -> e.getMessage()
+                        .equalsIgnoreCase("Already exist document for this proposal")
+                );
+
+        if(hasError)
+            return ResponseEntity.unprocessableEntity().headers(headers).body(apiError);
+
         return handleExceptionInternal(ex, apiError, headers, HttpStatus.BAD_REQUEST, request);
     }
 }

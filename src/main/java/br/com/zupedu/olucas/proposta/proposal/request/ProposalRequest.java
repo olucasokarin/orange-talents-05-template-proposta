@@ -2,6 +2,7 @@ package br.com.zupedu.olucas.proposta.proposal.request;
 
 import br.com.zupedu.olucas.proposta.proposal.model.Proposal;
 import br.com.zupedu.olucas.proposta.proposal.validators.CPFOrCNPJ;
+import br.com.zupedu.olucas.proposta.validators.UniqueValue;
 
 import javax.validation.constraints.*;
 
@@ -9,6 +10,7 @@ public class ProposalRequest {
 
     @NotNull
     @CPFOrCNPJ
+    @UniqueValue(entity = Proposal.class, attribute = "document", message = "Already exist document for this proposal")
     private String document; //cpf or cnpj
     @NotBlank
     @Email
