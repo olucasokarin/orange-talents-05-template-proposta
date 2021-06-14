@@ -1,12 +1,10 @@
 package br.com.zupedu.olucas.proposta.proposal.model;
 
 
+import br.com.zupedu.olucas.proposta.proposal.enums.Status;
 import br.com.zupedu.olucas.proposta.proposal.validators.CPFOrCNPJ;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -35,6 +33,8 @@ public class Proposal {
     @NotNull
     @Positive
     private Double salary;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Deprecated
     public Proposal() {
@@ -51,5 +51,21 @@ public class Proposal {
 
     public UUID getExternalId() {
         return externalId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
