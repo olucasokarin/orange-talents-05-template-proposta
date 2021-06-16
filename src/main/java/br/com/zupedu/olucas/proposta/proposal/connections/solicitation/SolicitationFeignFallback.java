@@ -1,4 +1,4 @@
-package br.com.zupedu.olucas.proposta.proposal.connections;
+package br.com.zupedu.olucas.proposta.proposal.connections.solicitation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;

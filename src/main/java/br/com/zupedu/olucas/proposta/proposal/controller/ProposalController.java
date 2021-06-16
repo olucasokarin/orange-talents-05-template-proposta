@@ -1,8 +1,8 @@
 package br.com.zupedu.olucas.proposta.proposal.controller;
 
-import br.com.zupedu.olucas.proposta.proposal.connections.SolicitationFeign;
-import br.com.zupedu.olucas.proposta.proposal.connections.SolicitationRequest;
-import br.com.zupedu.olucas.proposta.proposal.connections.SolicitationResponse;
+import br.com.zupedu.olucas.proposta.proposal.connections.solicitation.SolicitationFeign;
+import br.com.zupedu.olucas.proposta.proposal.connections.solicitation.SolicitationRequest;
+import br.com.zupedu.olucas.proposta.proposal.connections.solicitation.SolicitationResponse;
 import br.com.zupedu.olucas.proposta.proposal.model.Proposal;
 import br.com.zupedu.olucas.proposta.proposal.repository.ProposalRepository;
 import br.com.zupedu.olucas.proposta.proposal.request.ProposalRequest;
@@ -19,12 +19,13 @@ import java.net.URI;
 public class ProposalController {
 
     ProposalRepository proposalRepository;
-    SolicitationFeign cardsFeign;
+    SolicitationFeign solicitationFeign;
 
     @Autowired
-    public ProposalController(ProposalRepository proposalRepository, SolicitationFeign cardsFeign) {
+    public ProposalController(ProposalRepository proposalRepository,
+                              SolicitationFeign solicitationFeign) {
         this.proposalRepository = proposalRepository;
-        this.cardsFeign = cardsFeign;
+        this.solicitationFeign = solicitationFeign;
     }
 
     @PostMapping
@@ -32,7 +33,7 @@ public class ProposalController {
         Proposal proposal = proposalRequest.convertRequestToEntity();
         proposalRepository.save(proposal);
 
-        SolicitationResponse response = cardsFeign.solicitation(new SolicitationRequest(proposal));
+        SolicitationResponse response = solicitationFeign.solicitation(new SolicitationRequest(proposal));
         proposal.setStatus(response.getResultadoSolicitacao());
         proposalRepository.save(proposal);
 

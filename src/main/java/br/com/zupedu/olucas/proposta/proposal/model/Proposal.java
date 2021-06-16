@@ -1,6 +1,7 @@
 package br.com.zupedu.olucas.proposta.proposal.model;
 
 
+import br.com.zupedu.olucas.proposta.card.model.Card;
 import br.com.zupedu.olucas.proposta.proposal.enums.Status;
 import br.com.zupedu.olucas.proposta.proposal.validators.CPFOrCNPJ;
 
@@ -35,6 +36,8 @@ public class Proposal {
     private Double salary;
     @Enumerated(EnumType.STRING)
     private Status status;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Card card;
 
     @Deprecated
     public Proposal() {
@@ -67,5 +70,9 @@ public class Proposal {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public void associateCardInProposal(Card card) {
+        this.card = card;
     }
 }

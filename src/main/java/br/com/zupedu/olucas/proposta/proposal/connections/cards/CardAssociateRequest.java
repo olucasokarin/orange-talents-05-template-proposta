@@ -1,13 +1,18 @@
-package br.com.zupedu.olucas.proposta.proposal.connections;
+package br.com.zupedu.olucas.proposta.proposal.connections.cards;
 
 import br.com.zupedu.olucas.proposta.proposal.model.Proposal;
 
-public class SolicitationRequest {
+import javax.validation.constraints.NotBlank;
+
+public class CardAssociateRequest {
+    @NotBlank
     private String documento;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String idProposta;
 
-    public SolicitationRequest(Proposal proposal) {
+    public CardAssociateRequest(Proposal proposal) {
         this.documento = proposal.getDocument();
         this.nome = proposal.getName();
         this.idProposta = String.valueOf(proposal.getId());

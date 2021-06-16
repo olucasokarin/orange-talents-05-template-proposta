@@ -1,4 +1,4 @@
-package br.com.zupedu.olucas.proposta.proposal.connections;
+package br.com.zupedu.olucas.proposta.proposal.connections.solicitation;
 
 import br.com.zupedu.olucas.proposta.proposal.enums.Status;
 
