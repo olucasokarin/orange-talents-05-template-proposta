@@ -5,6 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,8 +15,10 @@ public class Card {
     private Long id;
     private UUID externalId;
     private String numberCard;
-    @OneToOne
+    @OneToOne(mappedBy = "card")
     Proposal proposal;
+    @OneToMany(mappedBy = "card")
+    List<Biometry> biometrics;
     @CreatedDate
     private LocalDateTime createdAt;
 
