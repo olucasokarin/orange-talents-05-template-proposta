@@ -1,6 +1,21 @@
 version: '3'
 services:
 
+  proposta:
+    container_name: proposta
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: olucas/proposta
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgreslocal:5432/proposta
+    depends_on:
+      - "postgreslocal"
+      - "keycloak"
+      - "vault"
+    ports:
+      - 8080:8080
+
   zookeeper:
     image: "confluentinc/cp-zookeeper:5.2.1"
     environment:
