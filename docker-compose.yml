@@ -22,6 +22,18 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
 
+  postgreslocal:
+    image: 'postgres:alpine'
+    volumes:
+      - postgres-volume-local:/var/lib/postgresql/data
+    ports:
+      - 5436:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: proposta
+      POSTGRES_HOST: postgres
+
   postgres:
     image: 'postgres:alpine'
     volumes:
@@ -138,3 +150,4 @@ volumes:
   grafana-volume:
   prometheus-volume:
   postgres-volume:
+  postgres-volume-local:

@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -66,6 +67,20 @@ public class Proposal {
 
     public String getName() {
         return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public String getCardNumber() {
+        if (Objects.nonNull(this.card))
+            return this.card.getNumberCard();
+        return null;
     }
 
     public void setStatus(Status status) {

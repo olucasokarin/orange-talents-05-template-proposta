@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface ProposalRepository extends JpaRepository<Proposal, Long> {
 
     @Query("select p from Proposal p where p.card is null and p.status = 'ELIGIBLE'")
     List<Proposal> getProposalWithoutCard();
+
+    Optional<Proposal> findByExternalId(UUID id);
 }

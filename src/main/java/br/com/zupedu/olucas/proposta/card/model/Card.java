@@ -28,4 +28,8 @@ public class Card {
         this.createdAt = createdAt;
         this.externalId = UUID.randomUUID();
     }
+
+    public String getNumberCard() {
+        return numberCard;
+    }
 }
