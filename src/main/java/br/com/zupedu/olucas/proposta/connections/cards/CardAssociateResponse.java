@@ -1,4 +1,4 @@
-package br.com.zupedu.olucas.proposta.proposal.connections.cards;
+package br.com.zupedu.olucas.proposta.connections.cards;
 
 import br.com.zupedu.olucas.proposta.card.model.Card;
 

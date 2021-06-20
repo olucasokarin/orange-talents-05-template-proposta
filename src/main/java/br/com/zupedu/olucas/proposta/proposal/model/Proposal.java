@@ -83,6 +83,12 @@ public class Proposal {
         return null;
     }
 
+    public Card getCard() {
+        if (Objects.nonNull(this.card))
+            return this.card;
+        return null;
+    }
+
     public void setStatus(Status status) {
         this.status = status;
     }

@@ -19,6 +19,8 @@ public class Card {
     Proposal proposal;
     @OneToMany(mappedBy = "card")
     List<Biometry> biometrics;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "card")
+    List<Lock> locks;
     @CreatedDate
     private LocalDateTime createdAt;
 
@@ -34,5 +36,13 @@ public class Card {
 
     public String getNumberCard() {
         return numberCard;
+    }
+
+    public UUID getExternalId() {
+        return externalId;
+    }
+
+    public void lockTheCard(Lock lock) {
+        this.locks.add(lock);
     }
 }

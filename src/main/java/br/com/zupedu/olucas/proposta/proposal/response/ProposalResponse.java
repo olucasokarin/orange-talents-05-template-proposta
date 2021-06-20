@@ -11,7 +11,7 @@ public class ProposalResponse {
     private String email;
     private String name;
     private Status status;
-    private String cardNumber;
+    private ProposalCardResponse card;
 
     public ProposalResponse(Proposal proposal) {
         this.id = proposal.getExternalId();
@@ -19,7 +19,7 @@ public class ProposalResponse {
         this.email = proposal.getEmail();
         this.name = proposal.getName();
         this.status = proposal.getStatus();
-        this.cardNumber = proposal.getCardNumber();
+        this.card = proposal.getCard() != null ? new ProposalCardResponse(proposal.getCard()) : null;
     }
 
     public UUID getId() {
@@ -42,7 +42,7 @@ public class ProposalResponse {
         return status;
     }
 
-    public String getCardNumber() {
-        return cardNumber;
+    public ProposalCardResponse getCard() {
+        return card;
     }
 }

@@ -1,8 +1,8 @@
 package br.com.zupedu.olucas.proposta.proposal.schedules;
 
-import br.com.zupedu.olucas.proposta.proposal.connections.cards.CardAssociateRequest;
-import br.com.zupedu.olucas.proposta.proposal.connections.cards.CardAssociateResponse;
-import br.com.zupedu.olucas.proposta.proposal.connections.cards.CardsFeign;
+import br.com.zupedu.olucas.proposta.connections.cards.CardAssociateRequest;
+import br.com.zupedu.olucas.proposta.connections.cards.CardAssociateResponse;
+import br.com.zupedu.olucas.proposta.connections.cards.CardsFeign;
 import br.com.zupedu.olucas.proposta.proposal.model.Proposal;
 import br.com.zupedu.olucas.proposta.proposal.repository.ProposalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
