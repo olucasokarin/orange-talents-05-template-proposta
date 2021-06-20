@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  proposta:
+  proposal:
     container_name: proposta
     build:
       context: ./
@@ -9,6 +9,8 @@ services:
     image: olucas/proposta
     environment:
       DATABASE_URL: jdbc:postgresql://postgreslocal:5432/proposta
+      KEYCLOAK_ISSUER_URI: http://keycloak:8080/auth/realms/myrealm
+      KEYCLOAK_JWKS_URI: http://keycloak:8080/auth/realms/myrealm/protocol/openid-connect/certs
     depends_on:
       - "postgreslocal"
       - "keycloak"
@@ -88,6 +90,9 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: Pa55w0rd
       POSTGRES_PORT_5432_TCP_ADDR: 127.0.0.1
+      KEYCLOAK_FRONTEND_URL: $KEYCLOAK_FRONTEND_URL
+      en_file:
+        .env
 
   analise:
     image: 'zupacademy/analise-financeira'
