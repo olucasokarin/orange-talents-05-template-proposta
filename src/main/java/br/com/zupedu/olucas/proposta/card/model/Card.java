@@ -21,6 +21,8 @@ public class Card {
     List<Biometry> biometrics;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "card")
     List<Lock> locks;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "card")
+    List<Travel> travels;
     @CreatedDate
     private LocalDateTime createdAt;
 
@@ -44,5 +46,9 @@ public class Card {
 
     public void lockTheCard(Lock lock) {
         this.locks.add(lock);
+    }
+
+    public void registerTravel(Travel travel) {
+        this.travels.add(travel);
     }
 }
