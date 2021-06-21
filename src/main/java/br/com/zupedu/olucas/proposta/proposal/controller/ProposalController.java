@@ -1,5 +1,6 @@
 package br.com.zupedu.olucas.proposta.proposal.controller;
 
+import br.com.zupedu.olucas.proposta.config.metrics.ProposalMetrics;
 import br.com.zupedu.olucas.proposta.proposal.connections.solicitation.SolicitationFeign;
 import br.com.zupedu.olucas.proposta.proposal.connections.solicitation.SolicitationRequest;
 import br.com.zupedu.olucas.proposta.proposal.connections.solicitation.SolicitationResponse;
@@ -25,12 +26,15 @@ public class ProposalController {
 
     ProposalRepository proposalRepository;
     SolicitationFeign solicitationFeign;
+    ProposalMetrics proposalMetrics;
 
     @Autowired
     public ProposalController(ProposalRepository proposalRepository,
-                              SolicitationFeign solicitationFeign) {
+                              SolicitationFeign solicitationFeign,
+                              ProposalMetrics proposalMetrics) {
         this.proposalRepository = proposalRepository;
         this.solicitationFeign = solicitationFeign;
+        this.proposalMetrics = proposalMetrics;
     }
 
     @PostMapping
@@ -45,25 +49,18 @@ public class ProposalController {
         URI uri = uribuild.path("/api/proposals/{id}")
                 .buildAndExpand(proposal.getExternalId()).toUri();
 
+        proposalMetrics.incrementCounter();
         return ResponseEntity.created(uri).build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getProposal(@PathVariable("id") String id) {
-        try {
-            UUID uuid = UUID.fromString(id);
-            Optional<Proposal> proposalOptional = proposalRepository.findByExternalId(uuid);
-
-            if (proposalOptional.isEmpty())
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getBodyNotFound());
-
-            Proposal proposal = proposalOptional.get();
-            ProposalResponse proposalResponse = new ProposalResponse(proposal);
-
-            return ResponseEntity.ok(proposalResponse);
-        }catch (IllegalArgumentException e) {
+    public ResponseEntity<?> getProposal(@PathVariable("id") UUID uuid) {
+        Optional<Proposal> proposalOptional = proposalRepository.findByExternalId(uuid);
+        if (proposalOptional.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getBodyNotFound());
-        }
+
+        ProposalResponse proposalResponse = new ProposalResponse(proposalOptional.get());
+        return ResponseEntity.ok(proposalResponse);
     }
 
     private HashMap<String, String> getBodyNotFound() {
