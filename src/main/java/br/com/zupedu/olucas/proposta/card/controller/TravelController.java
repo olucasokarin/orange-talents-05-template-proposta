@@ -4,9 +4,11 @@ import br.com.zupedu.olucas.proposta.card.model.Card;
 import br.com.zupedu.olucas.proposta.card.model.Travel;
 import br.com.zupedu.olucas.proposta.card.repository.CardRepository;
 import br.com.zupedu.olucas.proposta.card.request.TravelRequest;
+import br.com.zupedu.olucas.proposta.card.validation.ValidatorUniqueDestinationAndDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +22,12 @@ import java.util.UUID;
 public class TravelController {
 
     CardRepository cardRepository;
+    ValidatorUniqueDestinationAndDate uniqueDestinationAndDate;
 
     @Autowired
-    public TravelController(CardRepository cardRepository) {
+    public TravelController(CardRepository cardRepository, ValidatorUniqueDestinationAndDate uniqueDestinationAndDate) {
         this.cardRepository = cardRepository;
+        this.uniqueDestinationAndDate = uniqueDestinationAndDate;
     }
 
     @PostMapping("/{id}")
@@ -51,4 +55,10 @@ public class TravelController {
         hash.put("message", "Card not found");
         return hash;
     }
+
+    @InitBinder
+    public void init(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(uniqueDestinationAndDate);
+    }
+
 }

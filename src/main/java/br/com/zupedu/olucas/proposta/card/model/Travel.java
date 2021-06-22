@@ -26,6 +26,7 @@ public class Travel {
     private LocalDate dateEndTravel;
     private String userAgent;
     private String ipClient;
+    private boolean statusNotice;
     @CreatedDate
     private LocalDateTime createdAt = LocalDateTime.now();
     @ManyToOne
@@ -42,7 +43,23 @@ public class Travel {
         this.userAgent = userAgent;
         this.ipClient = ipClient;
         this.card = card;
+        this.statusNotice = false;
         this.externalId = UUID.randomUUID();
     }
 
+    public String getNumberCard() {
+        return numberCard;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public LocalDate getDateEndTravel() {
+        return dateEndTravel;
+    }
+
+    public void syncNoticeWithAPI() {
+        this.statusNotice = true;
+    }
 }

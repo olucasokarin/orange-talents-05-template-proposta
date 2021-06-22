@@ -13,4 +13,9 @@ public class CardsFeignFallback implements CardsFeign {
     public CardLockResponse lockCard(String id, CardLockRequest request) {
         return new CardLockResponse(StatusCardLock.FALHA);
     }
+
+    @Override
+    public CardNoticeResponse noticeTravel(String id, CardNoticeRequest request) {
+        return new CardNoticeResponse(StatusNotice.FALHA);
+    }
 }

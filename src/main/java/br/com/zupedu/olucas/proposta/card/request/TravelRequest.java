@@ -30,4 +30,12 @@ public class TravelRequest {
     public Travel convertRequestToEntity(Card card, String userAgent, String ipAddress) {
         return new Travel(card, this.destination, this.dateEndTravel, userAgent, ipAddress);
     }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public LocalDate getDateEndTravel() {
+        return dateEndTravel;
+    }
 }

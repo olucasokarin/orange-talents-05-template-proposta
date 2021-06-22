@@ -15,4 +15,7 @@ public interface CardsFeign {
 
     @PostMapping("/{id}/bloqueios")
     CardLockResponse lockCard(@PathVariable("id") String id, @Valid @RequestBody CardLockRequest request);
+
+    @PostMapping("/{id}/avisos")
+    CardNoticeResponse noticeTravel(@PathVariable("id") String id, @Valid @RequestBody CardNoticeRequest request);
 }
