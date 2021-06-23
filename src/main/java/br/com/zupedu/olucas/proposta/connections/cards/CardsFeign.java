@@ -18,4 +18,7 @@ public interface CardsFeign {
 
     @PostMapping("/{id}/avisos")
     CardNoticeResponse noticeTravel(@PathVariable("id") String id, @Valid @RequestBody CardNoticeRequest request);
+
+    @PostMapping("/{id}/carteiras")
+    CardWalletResponse associateWallet(@PathVariable("id") String id, @Valid @RequestBody CardWalletRequest request);
 }

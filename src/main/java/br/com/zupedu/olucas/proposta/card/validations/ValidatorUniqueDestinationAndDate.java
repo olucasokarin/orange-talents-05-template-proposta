@@ -1,4 +1,4 @@
-package br.com.zupedu.olucas.proposta.card.validation;
+package br.com.zupedu.olucas.proposta.card.validations;
 
 import br.com.zupedu.olucas.proposta.card.request.TravelRequest;
 import org.springframework.context.annotation.Configuration;

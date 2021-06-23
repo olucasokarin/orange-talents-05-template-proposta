@@ -4,7 +4,7 @@ import br.com.zupedu.olucas.proposta.card.model.Card;
 import br.com.zupedu.olucas.proposta.card.model.Travel;
 import br.com.zupedu.olucas.proposta.card.repository.CardRepository;
 import br.com.zupedu.olucas.proposta.card.request.TravelRequest;
-import br.com.zupedu.olucas.proposta.card.validation.ValidatorUniqueDestinationAndDate;
+import br.com.zupedu.olucas.proposta.card.validations.ValidatorUniqueDestinationAndDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

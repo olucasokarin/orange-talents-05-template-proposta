@@ -11,6 +11,8 @@ services:
       DATABASE_URL: jdbc:postgresql://postgreslocal:5432/proposta
       KEYCLOAK_ISSUER_URI: http://keycloak:8080/auth/realms/myrealm
       KEYCLOAK_JWKS_URI: http://keycloak:8080/auth/realms/myrealm/protocol/openid-connect/certs
+      SOLICITATION_URL: http://analise:9999/api/solicitacao
+      CARD_URL: http://contas:8888/api/cartoes
     depends_on:
       - "postgreslocal"
       - "keycloak"

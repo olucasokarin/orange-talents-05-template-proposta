@@ -23,6 +23,8 @@ public class Card {
     List<Lock> locks;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "card")
     List<Travel> travels;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "card")
+    List<Wallet> wallets;
     @CreatedDate
     private LocalDateTime createdAt;
 
@@ -50,5 +52,9 @@ public class Card {
 
     public void registerTravel(Travel travel) {
         this.travels.add(travel);
+    }
+
+    public void associateWallet(Wallet wallet) {
+        this.wallets.add(wallet);
     }
 }

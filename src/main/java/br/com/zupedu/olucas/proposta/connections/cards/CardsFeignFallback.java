@@ -18,4 +18,9 @@ public class CardsFeignFallback implements CardsFeign {
     public CardNoticeResponse noticeTravel(String id, CardNoticeRequest request) {
         return new CardNoticeResponse(StatusNotice.FALHA);
     }
+
+    @Override
+    public CardWalletResponse associateWallet(String id, CardWalletRequest request) {
+        return new CardWalletResponse(StatusAssociateWallet.FALHA, null);
+    }
 }
