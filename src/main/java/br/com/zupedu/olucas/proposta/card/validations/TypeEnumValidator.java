@@ -27,7 +27,7 @@ public class TypeEnumValidator implements Validator {
         try {
             WalletStatusName.valueOf(walletRequest.getWallet());
         }catch (IllegalArgumentException e) {
-            errors.rejectValue("wallet", null, "The wallet: " + walletRequest.getWallet() + " not exists in: " +
+            errors.rejectValue("wallet", null, "The wallet '" + walletRequest.getWallet() + "' not exists in: " +
                     Arrays.stream(WalletStatusName.values()).map(WalletStatusName::name).collect(Collectors.toList()));
         }
     }
